@@ -11,26 +11,31 @@ import { PersonalizedPromptsSection } from "../personalized-prompts"
 import { PreferenceSection } from "../preference"
 import { TranslationStyleSection } from "../translation-style"
 
-const { translateAtom, setTranslateMock, testState } = vi.hoisted(() => ({
+const { translateAtom, configAtom, setTranslateMock, testState } = vi.hoisted(() => ({
   translateAtom: {},
-  setTranslateMock: vi.fn<(value: Partial<Config["translate"]>) => Promise<void>>(),
+  configAtom: {},
+  setTranslateMock: vi.fn<(value: Partial<Config["pageTranslation"]>) => Promise<void>>(),
   testState: {
-    translate: null as Config["translate"] | null,
+    pageTranslation: null as Config["pageTranslation"] | null,
+    config: null as Config | null,
   },
 }))
 
 vi.mock("jotai", () => ({
   useAtom: (atom: object) => {
-    if (atom !== translateAtom || !testState.translate) {
+    if (atom !== translateAtom || !testState.pageTranslation) {
       throw new Error("Unexpected atom")
     }
-    return [testState.translate, setTranslateMock]
+    return [testState.pageTranslation, setTranslateMock]
   },
   useAtomValue: (atom: object) => {
-    if (atom !== translateAtom || !testState.translate) {
+    if (atom === configAtom && testState.config) {
+      return testState.config
+    }
+    if (atom !== translateAtom || !testState.pageTranslation) {
       throw new Error("Unexpected atom")
     }
-    return testState.translate
+    return testState.pageTranslation
   },
 }))
 
@@ -39,8 +44,9 @@ vi.mock("@/utils/host/translate/ui/decorate-translation", () => ({
 }))
 
 vi.mock("@/utils/atoms/config", () => ({
+  configAtom,
   configFieldsAtomMap: {
-    translate: translateAtom,
+    pageTranslation: translateAtom,
   },
 }))
 
@@ -63,7 +69,13 @@ function renderInRouter(ui: ReactNode) {
 
 describe("translation page sections", () => {
   beforeEach(() => {
-    testState.translate = structuredClone(DEFAULT_CONFIG.translate)
+    testState.pageTranslation = structuredClone(DEFAULT_CONFIG.pageTranslation)
+    // Shares the same pageTranslation object, so per-test mutations stay
+    // visible to components reading the whole config (e.g. the mode gate).
+    testState.config = {
+      ...structuredClone(DEFAULT_CONFIG),
+      pageTranslation: testState.pageTranslation,
+    }
     setTranslateMock.mockReset()
     setTranslateMock.mockResolvedValue()
   })
@@ -87,7 +99,7 @@ describe("translation page sections", () => {
   })
 
   it("shows the preset and its preview while the style is not custom", () => {
-    testState.translate!.translationNodeStyle.isCustom = false
+    testState.pageTranslation!.translationNodeStyle.isCustom = false
 
     const { container } = renderInRouter(<TranslationStyleSection />)
 
@@ -97,7 +109,7 @@ describe("translation page sections", () => {
   })
 
   it("trades the preset and preview for a way into the CSS editor once the style is custom", () => {
-    testState.translate!.translationNodeStyle.isCustom = true
+    testState.pageTranslation!.translationNodeStyle.isCustom = true
 
     const { container } = renderInRouter(<TranslationStyleSection />)
 
@@ -113,15 +125,29 @@ describe("translation page sections", () => {
   })
 
   it("toggles hover translation without disturbing the hotkey it listens for", () => {
-    const translate = testState.translate!
+    const translate = testState.pageTranslation!
     translate.node.enabled = true
 
     renderInRouter(<HoverTranslationSection />)
 
-    fireEvent.click(screen.getByRole("switch"))
+    fireEvent.click(screen.getAllByRole("switch")[0]!)
 
     expect(setTranslateMock).toHaveBeenCalledWith({
       node: { ...translate.node, enabled: false },
+    })
+  })
+
+  it("toggles fresh hover translations without disturbing the hover trigger", () => {
+    const translate = testState.pageTranslation!
+
+    renderInRouter(<HoverTranslationSection />)
+
+    const switches = screen.getAllByRole("switch")
+    expect(switches).toHaveLength(2)
+    fireEvent.click(switches[1]!)
+
+    expect(setTranslateMock).toHaveBeenCalledWith({
+      node: { ...translate.node, forceRetranslation: true },
     })
   })
 })

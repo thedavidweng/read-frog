@@ -11,7 +11,7 @@ import { ShortcutLink } from "../../../components/shortcut-link"
  * key it listens for is set on the Shortcuts page, which the row links to.
  */
 export function HoverTranslationSection() {
-  const [translateConfig, setTranslateConfig] = useAtom(configFieldsAtomMap.translate)
+  const [translateConfig, setTranslateConfig] = useAtom(configFieldsAtomMap.pageTranslation)
 
   return (
     <ConfigSection
@@ -31,6 +31,19 @@ export function HoverTranslationSection() {
           checked={translateConfig.node.enabled}
           onCheckedChange={(checked) => {
             void setTranslateConfig({ node: { ...translateConfig.node, enabled: checked } })
+          }}
+        />
+      </ConfigItem>
+      <ConfigItem
+        title={i18n.t("options.translation.hoverTranslation.forceRetranslation.title")}
+        description={i18n.t("options.translation.hoverTranslation.forceRetranslation.description")}
+      >
+        <Switch
+          checked={translateConfig.node.forceRetranslation}
+          onCheckedChange={(checked) => {
+            void setTranslateConfig({
+              node: { ...translateConfig.node, forceRetranslation: checked },
+            })
           }}
         />
       </ConfigItem>

@@ -56,13 +56,16 @@ popup:
   aiSmartContextDescription: Usa el contexto de la página web para mejorar la calidad de la traducción. Requiere un proveedor de traducción LLM.
   more:
     title: Más
-    translationHub: Centro de traducción
+    help: Ayuda
+    tutorial: Tutorial
+    emailUs: Escríbenos
+    featureRequest: Sugerir una función
+    bugReport: Informar de un fallo
+    community: Comunidad
     joinDiscord: Unirse a Discord
     joinWechat: Unirse al grupo de WeChat
     starGithub: Marcar con estrella en GitHub
     rateUs: Calificarnos
-    ebook: Lector de libros electrónicos de terceros
-    tutorial: Tutorial
 errorRecovery:
   title: Algo salió mal
   description: El modo de recuperación está activo. Puedes exportar tu configuración actual como copia de seguridad y luego restablecer la configuración e intentarlo de nuevo.
@@ -86,7 +89,9 @@ options:
   commandPalette:
     placeholder: Buscar configuración...
     noResults: No se encontró configuración
+    open: Buscar configuración
   sidebar:
+    toggle: Alternar barra lateral
     settings: Configuración
     features: Funciones
     product: Producto
@@ -94,44 +99,71 @@ options:
     translationHub: Centro de traducción
   product:
     roadmap: Hoja de ruta
-  contactUs:
-    title: Contáctanos
-    pageDescription: Cuéntanos qué construir a continuación, informa de un fallo o simplemente saluda.
+  helpAndCommunity:
+    title: Ayuda y comunidad
+    pageDescription: Aprende a usar Read Frog, pide ayuda al equipo o únete a otros usuarios en la comunidad.
+    help:
+      title: Ayuda
+    tutorial:
+      title: Tutorial
+      description: Lee la documentación y aprende a usar Read Frog
+    email:
+      title: Escríbenos
+      description: Contacta directamente con el equipo en contact@readfrog.app
     featureRequest:
       title: Sugerir una función
       description: Propón una idea y vota lo que el equipo construirá a continuación
     bugReport:
       title: Informar de un fallo
       description: Abre un ticket de soporte y síguelo hasta que se resuelva
-    email:
-      title: Escríbenos
-      description: Contacta directamente con el equipo en contact@readfrog.app
+    community:
+      title: Comunidad
+    discord:
+      title: Discord
+      description: Habla en tiempo real con el equipo y con otros usuarios
     wechat:
-      title: WeChat
-      description: Escanea el código QR para añadir al desarrollador en WeChat
+      title: Grupo de WeChat
+      description: Escanea el código QR para unirte al grupo de discusión de WeChat
       qrCodeAlt: Código QR de WeChat
   apiProviders:
     title: Proveedores de API
     pageDescription: Conecta los servicios de IA que usa Read Frog y elige cuál se encarga de cada función.
-    description: Añade los proveedores que Read Frog puede llamar. Más de 20 vienen integrados y funciona cualquier API compatible con OpenAI.
+    description: Añade los proveedores que Read Frog puede llamar. Más de 20 vienen integrados y puedes añadir API personalizadas compatibles con Chat Completions u Open Responses.
     configTitle: Configuración de proveedores
     addProvider: Añadir proveedor
     builtInProvider: Proveedor integrado
+    builtInAiUsage:
+      title: Cuota de IA integrada
+      remaining: "$1% restante"
+      supportedFeatures: "Compatible con $1 funciones"
+      resetsAt: "Se restablece el $1"
+      daily: Cuota diaria
+      weekly: Cuota semanal
+      features:
+        pageTranslation: Traducción de página
+        customAction: Acciones de IA personalizadas
+        noteSuggestion: Sugerencias de notas
+        selectionTranslation: Traducción de la selección
+        videoSubtitles: Subtítulos de video
+        inputTranslation: Traducción de entrada
+        languageDetection: Detección de idioma
     sponsorCta: Obtén IA rápida y rentable
+    sponsorCtaJalapenoCloud: Obtén un 50 % de descuento en GLM 5.2
     setApiKeyWarning:
       message: Configura tu clave de API en la página $1
     badges:
       featureCount: $1 funciones
       sponsor: Patrocinador
+      sponsorJalapenoCloud: $$2 gratis
     dialog:
       title: Añadir nuevo proveedor
       groups:
         builtInProviders:
           title: Proveedores LLM integrados
           description: Proveedores integrados de modelos de lenguaje grandes; no hace falta completar la mayoría de configuraciones, como Base URL
-        openaiCompatibleProviders:
-          title: Proveedores personalizados compatibles con OpenAI
-          description: Si no encuentras el proveedor de AI que deseas, selecciona Proveedor personalizado para configurar cualquier proveedor compatible con OpenAI, como Zhipu AI
+        compatibleProviders:
+          title: Proveedores de API compatibles
+          description: Usa Personalizado Chat Complete para API compatibles con Chat Completions o Personalizado Responses para API Open Responses.
         pureTranslationProviders:
           title: Proveedores de traducción pura
           description: Proveedores centrados en funciones de traducción sin capacidades de modelos de lenguaje grandes
@@ -141,6 +173,7 @@ options:
         description: Descripción
         apiKey: Clave API
         baseURL: Base URL
+        url: URL
         optional: Opcional
       duplicate: Duplicar
       delete: Eliminar
@@ -150,6 +183,7 @@ options:
         confirm: Eliminar
         cancel: Cancelar
       atLeastOneLLMProvider: Se requiere al menos un proveedor de traducción LLM.
+      featureWouldLoseProvider: 'No se puede eliminar: "$1" se quedaría sin ningún proveedor que pueda ejecutarla.'
       providerInUseCannotDisable: 'No se puede desactivar "$1" porque actualmente lo usan $2 función(es).'
       duplicateProviderName: 'Nombre de proveedor duplicado "$1"'
       defaultProvider:
@@ -196,8 +230,12 @@ options:
     providers:
       name:
         builtInAi: IA integrada
+        builtInAiAdvance: IA integrada avanzada
+        customChatComplete: Personalizado Chat Complete
+        customResponses: Personalizado Responses
       attribution:
-        builtInAi: Proporcionado por Atlas Cloud. Actualmente solo está disponible para acciones de IA personalizadas. Para desbloquear una experiencia sin restricciones, compra créditos muy rentables en el sitio web oficial.
+        builtInAi: Modelo estándar alojado por Read Frog. Los usuarios sin Ultra solo pueden usarlo en las acciones de IA personalizadas; los usuarios Ultra pueden usarlo en más funciones.
+        builtInAiAdvance: Modelo avanzado alojado por Read Frog, exclusivo para miembros Ultra. Funciona en todas las funciones de IA integrada — traducción de página, acciones de IA personalizadas y más — con una cuota semanal compartida. Consume la cuota más rápido que el modelo estándar.
       description:
         openai: Proporciona modelos como GPT-4o
         azure: Modelos OpenAI hospedados en Azure mediante tus implementaciones
@@ -208,9 +246,11 @@ options:
         anthropic: Modelos Claude conocidos por su seguridad y excelente razonamiento
         xai: Empresa de AI de Elon Musk que ofrece modelos Grok con acceso a datos en tiempo real
         atlascloud: Plataforma unificada compatible con OpenAI para modelos recientes como DeepSeek, Kimi, Qwen, Doubao y GLM
+        jalapenocloud: IA de nivel empresarial que utilizan los mejores equipos, ¡ahora para ti!
         siliconflow: Plataforma de inferencia de alto rendimiento para modelos chinos e internacionales
         tensdaq: Plataforma revolucionaria de pujas AI MaaS con precios impulsados por el mercado, que elimina los altos precios fijos
-        openaiCompatible: Compatible con API de terceros y OpenAI
+        openaiCompatible: Conecta un endpoint personalizado compatible con la API Chat Completions de OpenAI
+        openResponses: Conecta un endpoint personalizado compatible con la API Open Responses
         deeplx: API de DeepL no oficial
         deepl: API oficial de DeepL
         bedrock: Servicio administrado de AWS para modelos fundacionales de nivel empresarial
@@ -231,6 +271,7 @@ options:
         huggingface: API de inferencia de Hugging Face que proporciona acceso a miles de modelos de código abierto
     apiKey:
       showAPIKey: Mostrar clave API
+      getAPIKey: Obtener clave API
     howToConfigure: ¿Cómo configurar?
     testConnection:
       button: Probar conexión
@@ -242,18 +283,20 @@ options:
       title: Proveedores de funciones
       description: Elige qué proveedor usar para cada función
       features:
-        translate: Traducción de página
-        selectionToolbar_translate: Traducción de la barra de selección
+        pageTranslation: Traducción de página
+        selectionTranslation: Traducción de la barra de selección
         inputTranslation: Traducción de entrada
         videoSubtitles: Subtítulos de video
+        noteSuggestion: Sugerencias de notas
       descriptions:
-        translate: Traduce la página completa en modo bilingüe o de reemplazo.
-        selectionToolbar_translate: Traduce el texto que seleccionas desde la barra de selección.
+        pageTranslation: Traduce la página completa en modo bilingüe o de reemplazo.
+        selectionTranslation: Traduce el texto que seleccionas desde la barra de selección.
         inputTranslation: Traduce lo que escribes en un campo de texto antes de enviarlo.
         videoSubtitles: Traduce los subtítulos que aparecen en el reproductor de video.
+        noteSuggestion: Sugiere palabras que vale la pena guardar en tu Notebase después de traducir una selección.
     languageDetection:
       title: Detección de idioma
-      description: Afecta la detección de idioma para traducción automática, la detección de idiomas omitidos y la precisión de selección de voz.
+      description: Afecta la detección de idioma para traducción automática y la precisión de selección de voz.
       mode:
         basic: Básica
         llm: LLM
@@ -288,8 +331,19 @@ options:
         title: Idioma de la interfaz
         description: Elige el idioma de la interfaz de la extensión, independiente del idioma de tu navegador.
         auto: Automático (seguir el navegador)
+    translationLanguage:
+      title: Idiomas de traducción
+      sourceCode:
+        title: Idioma de origen
+        description: El idioma desde el que se traducen las páginas. La detección automática lo deduce de la propia página.
+        auto: Detección automática
+      targetCode:
+        title: Idioma de destino
+        description: El idioma al que se traducen las páginas.
     extensionActivation:
       title: Activación de la extensión
+      description: Si Read Frog se ejecuta en todas partes salvo en los sitios que indiques, o solo en los sitios que indiques
+      manageSites: Gestionar sitios
       mode:
         title: Modo de activación
         description: Usa el modo de lista negra para desactivar la extensión en sitios específicos, o el modo de lista blanca para limitarla solo a sitios específicos.
@@ -422,9 +476,15 @@ options:
     selectionTranslation:
       title: Traducción de la selección
       description: Traduce el texto que seleccionaste.
+    subtitlesToggle:
+      title: Traducción de subtítulos
+      description: Activa o desactiva los subtítulos traducidos del vídeo.
     nodeTranslation:
       title: Traducción de párrafo
       description: Pasa el cursor o mantén pulsado un párrafo para traducir solo ese.
+    translationHub:
+      title: Centro de traducción
+      description: Abre el Centro de traducción en una pestaña nueva.
   overlayTools:
     title: Herramientas superpuestas
   inputTranslation:
@@ -498,11 +558,13 @@ options:
       speak:
         title: Leer en voz alta
         description: Muestra el botón de voz, que lee en voz alta el texto seleccionado
-      saveSuggestion:
-        title: Sugerencias de guardado
+      noteSuggestion:
+        title: Sugerencias de notas
         description: Después de traducir una selección con un proveedor de IA, sugerir palabras para guardar en tu Notebase
         action: Acción
         actionDescription: La acción que genera la sugerencia
+        provider: Proveedor
+        providerDescription: El proveedor de IA que genera la sugerencia
     display:
       title: Visualización
       opacity:
@@ -774,6 +836,7 @@ options:
           bilingual: Bilingüe
           translationOnly: Solo traducción
         switched: "Modo de traducción: $1"
+        microsoftNotSupported: Microsoft Translator no admite el modo de solo traducción. Para activarlo, cambia a otro proveedor.
       translateRange:
         title: Alcance de la traducción
         description: Selecciona si traducir solo el contenido principal o todo el contenido de la página.
@@ -785,6 +848,9 @@ options:
       enable:
         title: Activar
         description: Pasa el cursor o mantén pulsado un párrafo para traducir solo ese.
+      forceRetranslation:
+        title: Solicitar siempre una traducción nueva
+        description: La traducción al pasar el cursor omite la caché — vuelve a traducir aunque el texto ya esté en caché y sustituye el resultado guardado.
     translationStyle:
       title: Estilo de visualización de traducción
       description: Define cualquier estilo que quieras para distinguir los resultados de traducción del texto original
@@ -826,13 +892,22 @@ options:
             tooLong: CSS es demasiado largo
             saved: Todos los cambios guardados
     personalizedPrompts:
-      title: Prompts personalizados
+      title: Prompts personalizados de página
       description: Personalizar distintos tipos de Prompts te permite ajustar tú mismo el tipo de Prompt durante la traducción. Un Prompt representa el texto que el usuario envía al LLM.
       managePrompts: Gestionar prompts
       communityPrompts: Obtener o compartir prompts de la comunidad
       communityPromptsUrl: https://github.com/mengxi-ream/read-frog/discussions/821
       addPrompt: Añadir Prompt
       default: Predeterminado
+      builtIn: Integrado
+      copyAndCustomize: Copiar y personalizar
+      copyName: "Copia de $1"
+      builtInPrompts:
+        default:
+          description: Traducción equilibrada y fiable para contenido cotidiano
+        precisionRewrite:
+          name: Reescritura pulida
+          description: Traducción más natural y coloquial; aumenta ligeramente el uso de tokens
       importSuccess: Importación correcta
       import: Importar
       export: Exportar
@@ -861,6 +936,8 @@ options:
         cancel: Cancelar
     translationControl:
       title: Control de traducción
+      description: Qué empieza a traducirse por sí solo, qué nunca lo hace y qué se omite
+      manageControls: Gestionar controles
       autoTranslateWebsite:
         title: Traducción automática por sitio web
         description: Sitios que empiezan a traducirse en cuanto se abren
@@ -890,6 +967,8 @@ options:
         error: El valor debe estar entre $1 y $2
     translationQueue:
       title: Cola de traducción
+      description: Con qué rapidez salen las solicitudes, cuánto texto lleva cada una y cuánto se adelantan al lector
+      manageQueue: Gestionar cola
       requestQueueConfig:
         title: Tasa de traducción
         capacity:
@@ -990,13 +1069,18 @@ options:
         description: La IA vuelve a cortar los subtítulos en líneas que se leen como frases. También fija sus tiempos, así que pueden desajustarse. Requiere un proveedor de traducción LLM.
     aiQuota:
       title: Cuota de subtítulos con IA
-      description: Uso mensual de tu cuota de transcripción de subtítulos con IA
+      description: El reconocimiento de voz con IA te da subtítulos precisos para cualquier vídeo
+      launchBonusPromo: Suscríbete antes del $1 y obtén 300 minutos de transcripción adicionales
       loginRequired: Inicia sesión para ver tu cuota de subtítulos con IA
-      logIn: Iniciar sesión
-      betaRequired: Los subtítulos con IA están en beta y aún no están habilitados para tu cuenta
-      betaApply: Solicitar acceso
+      upgradeRequired: Los subtítulos con IA requieren una suscripción Pro o Ultra
+      pools:
+        subscription: Cuota mensual
+        launchBonus: Regalo de lanzamiento
+      resetsOn: Se restablece el $1
+      expiresOn: Caduca el $1
       loadError: No se pudo cargar tu cuota. Inténtalo de nuevo más tarde.
-      summary: Usados $1 de $2 minutos, quedan $3
+      remainingOf: Quedan $1 / $2 min
+      used: Usados $1 min
     style:
       title: Estilo de subtítulos
       description: Modo de visualización, posición, fuentes, colores y fondo, ajustados sobre una vista previa en vivo
@@ -1019,6 +1103,37 @@ options:
       fontWeight: Grosor de fuente
       backgroundOpacity: Opacidad del fondo
       reset: Restablecer a predeterminado
+      customCSS:
+        title: CSS personalizado
+        description: CSS adicional para las líneas de subtítulos, además de las fuentes y colores de arriba
+        presetTemplate: Plantilla predefinida
+        presetTemplateDescription: Aplica una plantilla lista para usar, como difuminar la traducción para taparla mientras practicas comprensión auditiva
+        presetPlaceholder: Elegir una plantilla
+        presets:
+          blurTranslation: Difuminar traducción
+          dashedTranslation: Traducción subrayada a trazos
+          dimOriginal: Atenuar original
+        editor:
+          placeholder: |
+            /* Ejemplo: difumina la traducción y muéstrala al pasar el cursor */
+            .subtitles-translation {
+              filter: blur(6px);
+            }
+
+            .subtitles-translation:hover {
+              filter: none;
+            }
+
+            /* Selectores disponibles: .read-frog-subtitles-box, .subtitles-main, .subtitles-translation */
+          docsLink: ¿Cómo configurar?
+          saveButton: Guardar
+          savedButton: Guardado
+          validation:
+            validating: Validando...
+            valid: CSS válido
+            syntaxError: CSS tiene errores de sintaxis
+            tooLong: CSS es demasiado largo
+            saved: Todos los cambios guardados
     customPrompts:
       title: Prompts personalizados de subtítulos
       description: Plantillas de prompts solo para la traducción de subtítulos, separadas de las de traducción de páginas web
@@ -1032,6 +1147,8 @@ options:
           videoSummary: Resumen del video (requiere contexto inteligente de IA)
     subtitlesQueue:
       title: Cola de subtítulos
+      description: Con qué rapidez salen las solicitudes de subtítulos y cuántas líneas lleva cada una
+      manageQueue: Gestionar cola
       requestQueueConfig:
         title: Tasa de traducción
         capacity:
@@ -1098,6 +1215,7 @@ languageDetection:
 translation:
   sameLanguage: Los idiomas de origen y destino deben ser diferentes
   autoModeSameLanguage: El idioma detectado '$1' es el mismo que el idioma de destino
+  extensionContextInvalidated: La extensión se actualizó. Actualiza esta página e inténtalo de nuevo.
 speak:
   fetchingAudio: Generando audio...
   playingAudio: Reproduciendo audio...
@@ -1138,6 +1256,7 @@ action:
   saveToNotebasePendingLoginDescription: Después de iniciar sesión, Read Frog creará la Notebase y guardará este resultado automáticamente.
   saveToNotebasePendingConnectedLoginDescription: Después de iniciar sesión, Read Frog guardará en la Notebase conectada si es posible. Si esta cuenta no puede usarla, creará una nueva Notebase y guardará este resultado.
   upgrade: Mejorar plan
+  updatePayment: Actualizar pago
   openCustomActions: Abrir Custom AI Actions
   openNotebase: Abrir Notebase
   contextDetailsTitleLabel: Título
@@ -1145,13 +1264,13 @@ action:
   translation: Traducción
   speak: Leer en voz alta
   playing: Reproduciendo
-saveSuggestion:
+noteSuggestion:
   title: Quizás quieras guardar
-  description: Guarda estas palabras en tu Notebase y repásalas cuando quieras.
+  description: Elige qué palabras guardar en tu Notebase y repásalas cuando quieras.
   save: Guardar
   saved: Guardado
   staleSuggestion: Esta sugerencia está desactualizada
-  toggleLabel: Mostrar sugerencias de guardado
+  toggleLabel: Mostrar sugerencias de notas
 thinking:
   label: Pensando
   complete: Razonamiento completo
@@ -1161,8 +1280,12 @@ shortcutKeySelector:
   placeholder: Introduce el atajo
 subtitles:
   loadingAiSubtitles: Cargando subtítulos con IA… (estimado 3 min)
-  requestAiSubtitles: Solicitar subtítulos con IA (Beta)
+  aiSubtitlesHint: Subtítulos precisos generados por reconocimiento de voz con IA avanzada, disponibles incluso sin subtítulos oficiales.
+  requestAiSubtitles: Solicitar subtítulos con IA
   usingAiSubtitles: Usando subtítulos con IA
+  toggle:
+    enabled: Traducción de subtítulos activada
+    disabled: Traducción de subtítulos desactivada
   actions:
     downloadTranslated: Descargar subtítulos traducidos
     downloadTranslatedPreparing: Preparando subtítulos, los videos largos pueden tardar más
@@ -1171,6 +1294,7 @@ subtitles:
     downloadSource: Descargar subtítulos de origen
   state:
     loading: Read Frog está cargando subtítulos
+    translating: Traduciendo…
     error: Se produjo un error
   errors:
     http429: 429 Demasiadas solicitudes a la API de subtítulos de youtube; inténtalo de nuevo más tarde
@@ -1189,16 +1313,32 @@ subtitles:
     aiAuthFailed: Error de autenticación de API; revisa tu clave API
     aiServiceUnavailable: Servicio de traducción temporalmente no disponible
     aiQuotaExceeded: Cuota mensual de subtítulos con IA agotada
+    aiQuotaExceededWithReset: Cuota mensual de subtítulos con IA agotada · se restablece el $1
+    aiLoginRequired: Inicia sesión para ver tu cuota de subtítulos con IA
+    aiSubscriptionRequired: Los subtítulos con IA requieren una suscripción Pro o Ultra
+    aiPaymentRequired: Actualiza tu método de pago para seguir generando subtítulos con IA
+    aiVideoTooLong: Este video es demasiado largo para los subtítulos con IA
+    aiLiveReplayUnsupported: Los subtítulos con IA aún no están disponibles para repeticiones de transmisiones en vivo
+    aiStillProcessing: La transcripción sigue en curso — vuelve a hacer clic en unos minutos para retomarla
     aiRequestFailed: Error al solicitar subtítulos con IA, inténtalo de nuevo más tarde
     aiNoResponse: El servicio AI no respondió; se usa el texto original
     translatedExportFailed: No se pudieron generar los subtítulos traducidos
     translatedExportIncomplete: No se pudieron traducir todas las líneas de subtítulos
     translatedExportSameLanguage: El idioma de origen y el de destino son iguales
 hostedAi:
+  ultraBadge:
+    tooltip: Requiere el plan Ultra · Haz clic en la insignia para obtenerlo
+  availability:
+    authenticationRequired: Inicia sesión para usar este proveedor
+    ultraRequired: Se requiere el plan Ultra
+    quotaExhausted: Cuota agotada
+    serviceUnavailable: No disponible temporalmente
+    usedPercent: "Cuota utilizada: $1%"
+    resetsAt: "Se restablece a las $1"
   errors:
     rateLimited: Demasiadas solicitudes, inténtalo de nuevo más tarde.
-    guestRateLimited: Límite de invitado alcanzado. Inicia sesión para obtener más solicitudes gratuitas de AI.
-    userRateLimited: Demasiadas solicitudes. Has superado el límite de uso gratuito, inténtalo de nuevo más tarde.
+    guestRateLimited: Demasiadas solicitudes de invitado. Inténtalo de nuevo más tarde.
+    userRateLimited: Demasiadas solicitudes. Inténtalo de nuevo más tarde.
 hotkey:
   control: Ctrl
   alt: Opción

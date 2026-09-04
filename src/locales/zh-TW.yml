@@ -56,13 +56,16 @@ popup:
   aiSmartContextDescription: 結合網頁前後文提升翻譯品質。需要設定 LLM 翻譯服務提供者。
   more:
     title: 更多
-    translationHub: 翻譯中心
+    help: 說明
+    tutorial: 使用教學
+    emailUs: 電子郵件聯絡
+    featureRequest: 功能建議
+    bugReport: 回報問題
+    community: 社群
     joinDiscord: 加入 Discord
     joinWechat: 加入微信群
     starGithub: 在 GitHub 加星
     rateUs: 給予好評
-    ebook: 第三方電子書閱讀器
-    tutorial: 使用教學
 errorRecovery:
   title: 應用程式發生異常
   description: 已進入復原模式。可先匯出目前設定作為備份，重設設定後再重試。
@@ -86,7 +89,9 @@ options:
   commandPalette:
     placeholder: 搜尋設定…
     noResults: 找不到設定
+    open: 搜尋設定
   sidebar:
+    toggle: 切換側邊欄
     settings: 設定
     features: 功能
     product: 產品
@@ -94,44 +99,71 @@ options:
     translationHub: 翻譯中心
   product:
     roadmap: 產品路線圖
-  contactUs:
-    title: 聯絡我們
-    pageDescription: 告訴我們接下來該做什麼、回報遇到的問題，或只是打聲招呼。
+  helpAndCommunity:
+    title: 說明與社群
+    pageDescription: 了解怎麼使用陪讀蛙、向團隊尋求協助，或加入社群和其他使用者交流。
+    help:
+      title: 說明
+    tutorial:
+      title: 使用教學
+      description: 閱讀文件，了解怎麼使用陪讀蛙
+    email:
+      title: 電子郵件聯絡
+      description: 透過 contact@readfrog.app 直接聯絡團隊
     featureRequest:
       title: 功能建議
       description: 提出想法，並為團隊接下來要做的功能投票
     bugReport:
       title: 回報問題
       description: 建立支援工單，並追蹤到問題解決為止
-    email:
-      title: 電子郵件聯絡
-      description: 透過 contact@readfrog.app 直接聯絡團隊
+    community:
+      title: 社群
+    discord:
+      title: Discord
+      description: 與團隊和其他使用者即時交流
     wechat:
-      title: 微信
-      description: 掃描 QR code 加開發者微信
+      title: 微信群
+      description: 掃描 QR code 進入微信討論群
       qrCodeAlt: 微信 QR code
   apiProviders:
     title: API 提供者
     pageDescription: 接入 Read Frog 呼叫的 AI 服務，並為每項功能指定使用哪一個。
-    description: 新增 Read Frog 可以呼叫的提供者。內建 20 多個，也支援任何 OpenAI 相容的 API。
+    description: 新增 Read Frog 可以呼叫的提供者。內建 20 多個，也可以新增相容 Chat Completions 的自訂 API 和 Open Responses 自訂 API。
     configTitle: 提供者設定
     addProvider: 新增提供者
     builtInProvider: 內建提供者
+    builtInAiUsage:
+      title: 內建 AI 額度
+      remaining: "剩餘 $1%"
+      supportedFeatures: "支援 $1 項功能"
+      resetsAt: "$1 重置"
+      daily: 每日額度
+      weekly: 每週額度
+      features:
+        pageTranslation: 網頁翻譯
+        customAction: 自訂 AI 指令
+        noteSuggestion: 猜你想存
+        selectionTranslation: 選取文字翻譯
+        videoSubtitles: 影片字幕
+        inputTranslation: 輸入翻譯
+        languageDetection: 語言偵測
     sponsorCta: 取得高速高性價比 AI
+    sponsorCtaJalapenoCloud: 取得 GLM 5.2 五折優惠
     setApiKeyWarning:
       message: 請在 $1 頁面設定 API 金鑰
     badges:
       featureCount: $1 個功能
       sponsor: 贊助
+      sponsorJalapenoCloud: $$2 免費額度
     dialog:
       title: 新增提供者
       groups:
         builtInProviders:
           title: 內建 LLM 提供者
           description: 內建的大型語言模型提供者，大多數設定不需要填寫，例如 Base URL
-        openaiCompatibleProviders:
-          title: OpenAI 相容自訂提供者
-          description: 如果找不到所需的 AI 提供者，請選擇 Custom Provider 來設定任何 OpenAI API 相容的提供者，例如智譜
+        compatibleProviders:
+          title: 相容 API 提供者
+          description: 相容 Chat Completions 的 API 使用自訂 Chat Complete，Open Responses API 使用自訂 Responses。
         pureTranslationProviders:
           title: 純翻譯提供者
           description: 專注於翻譯功能的提供者，沒有大型語言模型能力
@@ -141,6 +173,7 @@ options:
         description: 描述
         apiKey: API 金鑰
         baseURL: Base URL
+        url: URL
         optional: 可選
       duplicate: 複製
       delete: 刪除
@@ -150,6 +183,7 @@ options:
         confirm: 刪除
         cancel: 取消
       atLeastOneLLMProvider: 至少需要一個 LLM 翻譯提供者。
+      featureWouldLoseProvider: "無法刪除：「$1」將沒有任何可以執行它的提供者。"
       providerInUseCannotDisable: 無法停用「$1」，因為 $2 個功能正在使用它。
       duplicateProviderName: 重複的提供者名稱「$1」
       defaultProvider:
@@ -196,8 +230,12 @@ options:
     providers:
       name:
         builtInAi: 內建 AI
+        builtInAiAdvance: 高級內建 AI
+        customChatComplete: 自訂 Chat Complete
+        customResponses: 自訂 Responses
       attribution:
-        builtInAi: 由 Atlas Cloud 提供。目前僅對自訂 AI 指令開放。若要解鎖無限制體驗，可以前往官網購買高性價比額度。
+        builtInAi: 由 Read Frog 託管的普通模型。非 Ultra 使用者僅支援在自訂 AI 指令使用，Ultra 使用者支援在更多功能上使用。
+        builtInAiAdvance: 由 Read Frog 託管的進階模型，Ultra 會員專屬。網頁翻譯、自訂 AI 指令等全部內建 AI 功能均可使用，共享每週額度，額度消耗比標準模型更快。
       description:
         openai: 提供 GPT-4o 等模型
         azure: 透過 Azure 部署使用 OpenAI 模型
@@ -208,9 +246,11 @@ options:
         anthropic: 以安全性和推理能力著稱的 Claude 模型
         xai: 馬斯克的 AI 公司，提供具有即時資料存取能力的 Grok 模型
         atlascloud: 統一的 OpenAI 相容模型平台，提供 DeepSeek、Kimi、Qwen、豆包、GLM 等較新模型
+        jalapenocloud: 頂尖團隊都在用的企業級 AI，現在為你而來！
         siliconflow: 針對中國和國際模型的高效能推理平台
         tensdaq: 革命性競價 AI MaaS 平台，價格由市場供需決定，告別高成本固定定價
-        openaiCompatible: OpenAI API 相容的第三方
+        openaiCompatible: 連接與 OpenAI Chat Completions API 相容的自訂端點
+        openResponses: 連接與 Open Responses API 相容的自訂端點
         deeplx: 非官方 DeepL API
         deepl: 官方 DeepL API
         bedrock: AWS 託管的企業級基礎模型服務
@@ -231,6 +271,7 @@ options:
         huggingface: Hugging Face 推理 API，提供數千種開源模型存取
     apiKey:
       showAPIKey: 顯示 API 金鑰
+      getAPIKey: 取得 API 金鑰
     howToConfigure: 如何設定？
     testConnection:
       button: 測試連線
@@ -242,18 +283,20 @@ options:
       title: 功能提供者
       description: 為每個功能選擇使用的提供者
       features:
-        translate: 網頁翻譯
-        selectionToolbar_translate: 選取文字翻譯
+        pageTranslation: 網頁翻譯
+        selectionTranslation: 選取文字翻譯
         inputTranslation: 輸入翻譯
         videoSubtitles: 影片字幕
+        noteSuggestion: 猜你想存
       descriptions:
-        translate: 翻譯整個網頁，雙語對照或直接取代原文。
-        selectionToolbar_translate: 透過劃詞工具列翻譯你選取的文字。
+        pageTranslation: 翻譯整個網頁，雙語對照或直接取代原文。
+        selectionTranslation: 透過劃詞工具列翻譯你選取的文字。
         inputTranslation: 在送出前翻譯你寫在輸入框裡的內容。
         videoSubtitles: 翻譯影片播放器中隨播放出現的字幕。
+        noteSuggestion: 選取文字翻譯後，推薦值得存入筆記庫的詞條。
     languageDetection:
       title: 語言偵測
-      description: 影響自動翻譯語言偵測、跳過語言偵測和朗讀語音選擇的準確性。
+      description: 影響自動翻譯語言偵測和朗讀語音選擇的準確性。
       mode:
         basic: 基礎
         llm: LLM
@@ -288,8 +331,19 @@ options:
         title: 介面語言
         description: 選擇擴充功能介面的語言，獨立於瀏覽器語言。
         auto: 自動（跟隨瀏覽器）
+    translationLanguage:
+      title: 翻譯語言
+      sourceCode:
+        title: 來源語言
+        description: 網頁原文的語言。選擇「自動偵測」則由陪讀蛙從頁面本身判斷。
+        auto: 自動偵測
+      targetCode:
+        title: 目標語言
+        description: 網頁譯文使用的語言。
     extensionActivation:
       title: 擴充功能啟動
+      description: 在清單之外的所有網站執行，還是只在清單內的網站執行
+      manageSites: 管理網站
       mode:
         title: 啟動模式
         description: 使用封鎖清單模式可在特定網站停用擴充功能；使用允許清單模式則只在指定網站啟用擴充功能。
@@ -422,9 +476,15 @@ options:
     selectionTranslation:
       title: 選取文字翻譯
       description: 翻譯選取的文字。
+    subtitlesToggle:
+      title: 字幕翻譯
+      description: 開啟或關閉影片的翻譯字幕。
     nodeTranslation:
       title: 段落翻譯
       description: 滑鼠停留或長按段落，只翻譯這一段。
+    translationHub:
+      title: 翻譯中心
+      description: 在新分頁中開啟翻譯中心。
   overlayTools:
     title: 懸浮工具
   inputTranslation:
@@ -498,11 +558,13 @@ options:
       speak:
         title: 朗讀
         description: 在工具列中顯示朗讀按鈕，用於朗讀選取的文字
-      saveSuggestion:
+      noteSuggestion:
         title: 儲存建議
         description: 使用 AI 供應商進行劃詞翻譯後，推薦可存入筆記庫的詞條
         action: 指令
         actionDescription: 用於產生儲存建議的指令
+        provider: 提供者
+        providerDescription: 用於產生儲存建議的 AI 提供者
     display:
       title: 顯示
       opacity:
@@ -774,6 +836,7 @@ options:
           bilingual: 雙語對照
           translationOnly: 僅顯示翻譯
         switched: 翻譯模式：$1
+        microsoftNotSupported: Microsoft 翻譯不支援僅譯文模式，若想開啟請切換其他提供商。
       translateRange:
         title: 翻譯範圍
         description: 選擇是僅翻譯主要內容還是翻譯頁面上的所有內容。
@@ -785,6 +848,9 @@ options:
       enable:
         title: 啟用
         description: 滑鼠停留或長按段落，只翻譯這一段。
+      forceRetranslation:
+        title: 一律重新翻譯
+        description: 滑鼠停留翻譯會跳過快取：即使該文字已有快取也會重新翻譯，並覆蓋快取結果。
     translationStyle:
       title: 翻譯顯示樣式
       description: 設定自訂樣式以區分翻譯結果與原文
@@ -826,13 +892,22 @@ options:
             tooLong: CSS 過長
             saved: 所有變更已儲存
     personalizedPrompts:
-      title: 個人化提示詞
+      title: 自訂網頁提示詞
       description: 自訂不同類型的提示詞，可以在翻譯時自行調整提示詞類型。提示詞表示以使用者身分傳送給 LLM 的文字。
       managePrompts: 管理提示詞
       communityPrompts: 取得或分享社群提示詞
       communityPromptsUrl: https://github.com/mengxi-ream/read-frog/discussions/820
       addPrompt: 新增提示詞
       default: 通用
+      builtIn: 內建
+      copyAndCustomize: 複製並自訂
+      copyName: "$1 副本"
+      builtInPrompts:
+        default:
+          description: 適合日常內容的均衡、可靠翻譯
+        precisionRewrite:
+          name: 精翻重寫
+          description: 翻譯更道地、貼近口語與俚語；略增 token 用量
       importSuccess: 匯入成功
       import: 匯入
       export: 匯出
@@ -861,6 +936,8 @@ options:
         cancel: 取消
     translationControl:
       title: 翻譯控制
+      description: 哪些網頁會自動翻譯、哪些永不翻譯、哪些內容會被略過
+      manageControls: 管理控制規則
       autoTranslateWebsite:
         title: 依網站自動翻譯
         description: 開啟後就開始翻譯的網站
@@ -890,6 +967,8 @@ options:
         error: 數值必須在 $1 到 $2 之間
     translationQueue:
       title: 翻譯佇列
+      description: 請求發出的速度、每個請求承載的文字量，以及提前於閱讀位置多遠開始翻譯
+      manageQueue: 管理佇列
       requestQueueConfig:
         title: 翻譯速率
         capacity:
@@ -990,13 +1069,18 @@ options:
         description: 讓 AI 把字幕重新切成讀起來完整的句子。時間軸也由 AI 判斷，可能出現錯位。需要設定 LLM 翻譯服務。
     aiQuota:
       title: AI 字幕額度
-      description: 你帳號本月的 AI 字幕轉寫額度使用情況
+      description: AI 利用語音轉文字技術取得任何影片的準確字幕
+      launchBonusPromo: $1 之前購買會員額外贈送 300 分鐘轉錄額度
       loginRequired: 登入後查看你的 AI 字幕額度
-      logIn: 登入
-      betaRequired: AI 字幕測試中，你的帳號尚未取得使用資格
-      betaApply: 申請資格
+      upgradeRequired: AI 字幕需要 Pro 或 Ultra 訂閱
+      pools:
+        subscription: 每月額度
+        launchBonus: 上線贈送
+      resetsOn: $1 重置
+      expiresOn: $1 過期
       loadError: 無法載入額度，請稍後重試。
-      summary: 已用 $1 分鐘 / 共 $2 分鐘，剩餘 $3 分鐘
+      remainingOf: 剩餘 $1 / $2 分鐘
+      used: 已用 $1 分鐘
     style:
       title: 字幕樣式
       description: 顯示模式、位置、字型、顏色和背景，都對著預覽調
@@ -1019,6 +1103,37 @@ options:
       fontWeight: 字重
       backgroundOpacity: 背景透明度
       reset: 重設為預設值
+      customCSS:
+        title: 自訂 CSS
+        description: 在上面的字型和顏色之上，為字幕行追加 CSS
+        presetTemplate: 預設模板
+        presetTemplateDescription: 快速套用預設模板，例如暫時遮住譯文用於聽力訓練學習的模糊效果
+        presetPlaceholder: 選擇模板
+        presets:
+          blurTranslation: 模糊譯文
+          dashedTranslation: 虛線譯文
+          dimOriginal: 弱化原文
+        editor:
+          placeholder: |
+            /* 範例：先把譯文模糊，滑鼠移上去再顯示 */
+            .subtitles-translation {
+              filter: blur(6px);
+            }
+
+            .subtitles-translation:hover {
+              filter: none;
+            }
+
+            /* 可用的選擇器：.read-frog-subtitles-box、.subtitles-main、.subtitles-translation */
+          docsLink: 如何設定？
+          saveButton: 儲存
+          savedButton: 已儲存
+          validation:
+            validating: 驗證中…
+            valid: CSS 有效
+            syntaxError: CSS 存在語法錯誤
+            tooLong: CSS 過長
+            saved: 所有變更已儲存
     customPrompts:
       title: 自訂字幕提示詞
       description: 字幕翻譯專用的提示詞範本，與網頁翻譯提示詞分開
@@ -1032,6 +1147,8 @@ options:
           videoSummary: 影片摘要（需啟用 AI 智慧上下文）
     subtitlesQueue:
       title: 字幕佇列
+      description: 字幕請求發出的速度，以及每個請求承載的字幕行數
+      manageQueue: 管理佇列
       requestQueueConfig:
         title: 翻譯速率
         capacity:
@@ -1098,6 +1215,7 @@ languageDetection:
 translation:
   sameLanguage: 來源語言和目標語言必須不同
   autoModeSameLanguage: 偵測到的語言「$1」與目標語言相同
+  extensionContextInvalidated: 擴充功能已更新，請重新整理此頁面後再試一次。
 speak:
   fetchingAudio: 正在取得音訊…
   playingAudio: 正在播放音訊…
@@ -1138,6 +1256,7 @@ action:
   saveToNotebasePendingLoginDescription: 登入完成後，陪讀蛙會自動建立筆記庫並儲存目前結果。
   saveToNotebasePendingConnectedLoginDescription: 登入完成後，陪讀蛙會優先儲存到已連線的筆記庫；如果目前帳號無法使用它，會建立新的筆記庫並儲存目前結果。
   upgrade: 升級
+  updatePayment: 更新付款方式
   openCustomActions: 開啟自訂 AI 指令
   openNotebase: 開啟筆記庫
   contextDetailsTitleLabel: 標題
@@ -1145,9 +1264,9 @@ action:
   translation: 翻譯
   speak: 朗讀
   playing: 播放中
-saveSuggestion:
+noteSuggestion:
   title: 猜你想存
-  description: 把下列詞存入筆記庫，將來隨時複習
+  description: 選擇要存入筆記庫的詞，將來隨時複習
   save: 儲存
   saved: 已儲存
   staleSuggestion: 該建議已過期
@@ -1161,8 +1280,12 @@ shortcutKeySelector:
   placeholder: 請輸入快速鍵
 subtitles:
   loadingAiSubtitles: 正在載入 AI 字幕（預計 3 分鐘）
-  requestAiSubtitles: 請求 AI 字幕（Beta）
+  aiSubtitlesHint: 透過先進 AI 辨識語音生成準確字幕，無官方字幕時依然可用。
+  requestAiSubtitles: 請求 AI 字幕
   usingAiSubtitles: 正在使用 AI 字幕
+  toggle:
+    enabled: 字幕翻譯已開啟
+    disabled: 字幕翻譯已關閉
   actions:
     downloadTranslated: 下載翻譯字幕
     downloadTranslatedPreparing: 正在準備字幕，長影片可能需要更久
@@ -1171,6 +1294,7 @@ subtitles:
     downloadSource: 下載原始字幕
   state:
     loading: 陪讀蛙字幕載入中
+    translating: 翻譯中…
     error: 發生錯誤
   errors:
     http429: 429 YouTube 字幕 API 請求次數過多，請稍後再試
@@ -1189,16 +1313,32 @@ subtitles:
     aiAuthFailed: API 認證失敗，請檢查 API 金鑰
     aiServiceUnavailable: 翻譯服務暫時無法使用
     aiQuotaExceeded: 本月 AI 字幕額度已用完
+    aiQuotaExceededWithReset: 本月 AI 字幕額度已用完，$1 重置
+    aiLoginRequired: 登入後查看你的 AI 字幕額度
+    aiSubscriptionRequired: AI 字幕需要 Pro 或 Ultra 訂閱
+    aiPaymentRequired: 請更新付款方式後繼續產生 AI 字幕
+    aiVideoTooLong: 影片過長，暫不支援產生 AI 字幕
+    aiLiveReplayUnsupported: 暫不支援為直播回放產生 AI 字幕
+    aiStillProcessing: 轉錄仍在進行中，幾分鐘後再點一次即可繼續取得
     aiRequestFailed: AI 字幕請求失敗，請稍後重試
     aiNoResponse: AI 服務未回應，使用原文顯示
     translatedExportFailed: 產生翻譯字幕失敗
     translatedExportIncomplete: 未能翻譯所有字幕行
     translatedExportSameLanguage: 來源語言和目標語言相同
 hostedAi:
+  ultraBadge:
+    tooltip: 需開通 Ultra 方案 · 點擊徽章獲取方案
+  availability:
+    authenticationRequired: 登入後可使用
+    ultraRequired: 需要 Ultra 方案
+    quotaExhausted: 額度已用完
+    serviceUnavailable: 暫時無法使用
+    usedPercent: "額度已使用 $1%"
+    resetsAt: "$1 重置"
   errors:
     rateLimited: 請求過於頻繁，請稍後再試
-    guestRateLimited: 請求過於頻繁，請登入以取得更多免費額度
-    userRateLimited: 請求過於頻繁，已超過免費額度限制，請稍後再試
+    guestRateLimited: 訪客請求過於頻繁，請稍後再試
+    userRateLimited: 請求過於頻繁，請稍後再試
 hotkey:
   control: Ctrl
   alt: Option

@@ -56,13 +56,16 @@ popup:
   aiSmartContextDescription: 结合网页上下文提升翻译效果。需要配置 LLM 翻译服务商。
   more:
     title: 更多
-    translationHub: 翻译中心
+    help: 帮助
+    tutorial: 使用教程
+    emailUs: 邮件联系
+    featureRequest: 功能建议
+    bugReport: 报告问题
+    community: 社区
     joinDiscord: 加入 Discord
     joinWechat: 加入微信群
     starGithub: Github 加星
     rateUs: 好评支持
-    ebook: 第三方电子书阅读器
-    tutorial: 使用教程
 errorRecovery:
   title: 应用发生异常
   description: 已进入恢复模式。你可以先导出当前设置作为备份，再重置设置后重试。
@@ -86,7 +89,9 @@ options:
   commandPalette:
     placeholder: 搜索设置...
     noResults: 未找到设置
+    open: 搜索设置
   sidebar:
+    toggle: 切换侧边栏
     settings: 设置
     features: 功能
     product: 产品
@@ -94,44 +99,71 @@ options:
     translationHub: 翻译中心
   product:
     roadmap: 路线图
-  contactUs:
-    title: 联系我们
-    pageDescription: 告诉我们接下来该做什么、反馈遇到的问题，或者只是打个招呼。
+  helpAndCommunity:
+    title: 帮助与社区
+    pageDescription: 了解怎么使用陪读蛙、向团队寻求帮助，或者加入社区和其他用户交流。
+    help:
+      title: 帮助
+    tutorial:
+      title: 使用教程
+      description: 阅读文档，了解怎么使用陪读蛙
+    email:
+      title: 邮件联系
+      description: 通过 contact@readfrog.app 直接联系团队
     featureRequest:
       title: 功能建议
       description: 提出想法，并为团队接下来要做的功能投票
     bugReport:
       title: 报告问题
       description: 提交工单，并跟进直到问题解决
-    email:
-      title: 邮件联系
-      description: 通过 contact@readfrog.app 直接联系团队
+    community:
+      title: 社区
+    discord:
+      title: Discord
+      description: 与团队和其他用户实时交流
     wechat:
-      title: 微信
-      description: 扫描二维码添加开发者微信
+      title: 微信群
+      description: 扫描二维码进入微信讨论群
       qrCodeAlt: 微信二维码
   apiProviders:
     title: API 提供商
     pageDescription: 接入 Read Frog 调用的 AI 服务，并为每项功能指定使用哪一个。
-    description: 添加 Read Frog 可以调用的提供商。内置 20 多个，也支持任何 OpenAI 兼容的 API。
+    description: 添加 Read Frog 可以调用的提供商。内置 20 多个，也可以添加兼容 Chat Completions 的自定义 API 和 Open Responses 自定义 API。
     configTitle: 提供商配置
     addProvider: 添加提供商
     builtInProvider: 内置提供商
+    builtInAiUsage:
+      title: 内置 AI 额度
+      remaining: "剩余 $1%"
+      supportedFeatures: "支持 $1 项功能"
+      resetsAt: "$1 重置"
+      daily: 每日额度
+      weekly: 每周额度
+      features:
+        pageTranslation: 网页翻译
+        customAction: 自定义 AI 指令
+        noteSuggestion: 猜你想存
+        selectionTranslation: 划词翻译
+        videoSubtitles: 视频字幕
+        inputTranslation: 输入翻译
+        languageDetection: 语言检测
     sponsorCta: 获取高速性价比 AI
+    sponsorCtaJalapenoCloud: 获取 GLM 5.2 五折优惠
     setApiKeyWarning:
       message: 请在 $1 页面设置 API Key
     badges:
       featureCount: $1 个功能
       sponsor: 赞助
+      sponsorJalapenoCloud: $$2 免费额度
     dialog:
       title: 添加新提供商
       groups:
         builtInProviders:
           title: 内置 LLM 提供商
           description: 内置的大语言模型提供商，无需填写大部分配置比如 Base URL
-        openaiCompatibleProviders:
-          title: OpenAI 兼容自定义提供商
-          description: 如果找不到你想要的 AI 提供商，请选择 Custom Provider 来配置任何 OpenAI 接口兼容的提供商，比如智谱
+        compatibleProviders:
+          title: 兼容 API 提供商
+          description: 兼容 Chat Completions 的 API 使用自定义 Chat Complete，Open Responses API 使用自定义 Responses。
         pureTranslationProviders:
           title: 纯翻译提供商
           description: 专注于翻译功能的提供商，没有大语言模型能力
@@ -141,6 +173,7 @@ options:
         description: 描述
         apiKey: API Key
         baseURL: Base URL
+        url: URL
         optional: 可选
       duplicate: 复制
       delete: 删除
@@ -150,6 +183,7 @@ options:
         confirm: 删除
         cancel: 取消
       atLeastOneLLMProvider: 至少需要一个 LLM 翻译提供商。
+      featureWouldLoseProvider: '无法删除："$1" 将没有任何可以运行它的提供商。'
       providerInUseCannotDisable: '无法禁用 "$1"，它当前正被 $2 个功能使用。'
       duplicateProviderName: '重复的提供商名称 "$1"'
       defaultProvider:
@@ -196,8 +230,12 @@ options:
     providers:
       name:
         builtInAi: 内置 AI
+        builtInAiAdvance: 高级内置 AI
+        customChatComplete: 自定义 Chat Complete
+        customResponses: 自定义 Responses
       attribution:
-        builtInAi: Provided by Atlas Cloud. 目前仅对自定义 AI 指令开放。若要解锁无限制体验，可以前往官网购买超高性价比额度。
+        builtInAi: 由 Read Frog 托管的普通模型。非 Ultra 用户仅支持在自定义 AI 指令使用，Ultra 用户支持在更多功能上使用。
+        builtInAiAdvance: 由 Read Frog 托管的高级模型，Ultra 会员专属。网页翻译、自定义 AI 指令等全部内置 AI 功能均可使用，共享每周额度，额度消耗比标准模型更快。
       description:
         openai: 提供 GPT-4o 等模型
         azure: 通过 Azure 部署使用 OpenAI 模型
@@ -208,9 +246,11 @@ options:
         anthropic: 以安全性和推理能力著称的 Claude 模型
         xai: 马斯克的 AI 公司，提供具有实时数据访问能力的 Grok 模型
         atlascloud: 统一的 OpenAI 兼容模型平台，提供 DeepSeek、Kimi、Qwen、豆包、GLM 等较新模型
+        jalapenocloud: 顶尖团队都在用的企业级 AI，现在为你而来！
         siliconflow: 面向中国和国际模型的高性能推理平台
         tensdaq: 革命性竞价 AI MaaS 平台，价格由市场供需决定，告别高成本固定定价
-        openaiCompatible: OpenAI API 兼容的第三方
+        openaiCompatible: 连接兼容 OpenAI Chat Completions API 的自定义端点
+        openResponses: 连接兼容 Open Responses API 的自定义端点
         deeplx: 非官方 DeepL API
         deepl: 官方 DeepL API
         bedrock: 面向企业级基础模型的 AWS 托管服务
@@ -231,6 +271,7 @@ options:
         huggingface: Hugging Face推理API，提供数千种开源模型访问
     apiKey:
       showAPIKey: 显示 API Key
+      getAPIKey: 获取 API Key
     howToConfigure: 如何配置?
     testConnection:
       button: 测试连接
@@ -242,18 +283,20 @@ options:
       title: 功能提供商
       description: 为每个功能选择使用的提供商
       features:
-        translate: 网页翻译
-        selectionToolbar_translate: 划词翻译
+        pageTranslation: 网页翻译
+        selectionTranslation: 划词翻译
         inputTranslation: 输入翻译
         videoSubtitles: 视频字幕
+        noteSuggestion: 猜你想存
       descriptions:
-        translate: 翻译整个网页，双语对照或直接替换原文。
-        selectionToolbar_translate: 通过划词工具栏翻译你选中的文本。
+        pageTranslation: 翻译整个网页，双语对照或直接替换原文。
+        selectionTranslation: 通过划词工具栏翻译你选中的文本。
         inputTranslation: 在发送前翻译你写在输入框里的内容。
         videoSubtitles: 翻译视频播放器中随播放出现的字幕。
+        noteSuggestion: 划词翻译后，推荐值得存入笔记库的词条。
     languageDetection:
       title: 语言检测
-      description: 影响自动翻译语言检测、跳过语言检测和朗读语音选择的准确性。
+      description: 影响自动翻译语言检测和朗读语音选择的准确性。
       mode:
         basic: 基础
         llm: LLM
@@ -288,8 +331,19 @@ options:
         title: 界面语言
         description: 选择扩展界面的语言，独立于浏览器语言。
         auto: 自动（跟随浏览器）
+    translationLanguage:
+      title: 翻译语言
+      sourceCode:
+        title: 源语言
+        description: 网页原文的语言。选择“自动检测”则由陪读蛙从页面本身判断。
+        auto: 自动检测
+      targetCode:
+        title: 目标语言
+        description: 网页译文使用的语言。
     extensionActivation:
       title: 扩展激活
+      description: 在列表之外的所有网站运行，还是只在列表内的网站运行
+      manageSites: 管理网站
       mode:
         title: 激活模式
         description: 使用黑名单模式可以在特定网站上禁用扩展，或使用白名单模式限制扩展仅在特定网站上运行。
@@ -422,9 +476,15 @@ options:
     selectionTranslation:
       title: 划词翻译
       description: 翻译选中的文本。
+    subtitlesToggle:
+      title: 字幕翻译
+      description: 打开或关闭视频的翻译字幕。
     nodeTranslation:
       title: 段落翻译
       description: 悬停或长按段落，只翻译这一段。
+    translationHub:
+      title: 翻译中心
+      description: 在新标签页中打开翻译中心。
   overlayTools:
     title: 悬浮工具
   inputTranslation:
@@ -498,11 +558,13 @@ options:
       speak:
         title: 朗读
         description: 在工具栏中显示朗读按钮，用于朗读选中的文本
-      saveSuggestion:
+      noteSuggestion:
         title: 保存建议
         description: 使用 AI 提供商进行划词翻译后，推荐可存入笔记库的词条
         action: 指令
         actionDescription: 用于生成保存建议的指令
+        provider: 提供商
+        providerDescription: 用于生成保存建议的 AI 提供商
     display:
       title: 显示
       opacity:
@@ -774,6 +836,7 @@ options:
           bilingual: 双语对照
           translationOnly: 仅显示翻译
         switched: 翻译模式：$1
+        microsoftNotSupported: Microsoft 翻译不支持仅译文模式，若想开启请切换其他提供商。
       translateRange:
         title: 翻译范围
         description: 选择是仅翻译主要内容还是翻译页面上的所有内容。
@@ -785,6 +848,9 @@ options:
       enable:
         title: 启用
         description: 悬停或长按段落，只翻译这一段。
+      forceRetranslation:
+        title: 始终重新翻译
+        description: 悬停翻译跳过缓存：即使该文本已有缓存也会重新翻译，并覆盖缓存结果。
     translationStyle:
       title: 翻译显示样式
       description: 设置任何你想要的样式以区分翻译结果和原文
@@ -826,13 +892,22 @@ options:
             tooLong: CSS 过长
             saved: 所有更改已保存
     personalizedPrompts:
-      title: 个性化 Prompt
+      title: 自定义网页提示词
       description: 自定义不同类型的 Prompt，可以在翻译时自行调整 Prompt 类型。Prompt 表示以用户身份发送给 LLM 的文本。
       managePrompts: 管理 Prompt
       communityPrompts: 获取或分享社区 Prompt
       communityPromptsUrl: https://github.com/mengxi-ream/read-frog/discussions/820
       addPrompt: 添加 Prompt
       default: 通用
+      builtIn: 内置
+      copyAndCustomize: 复制并自定义
+      copyName: "$1 副本"
+      builtInPrompts:
+        default:
+          description: 适合日常内容的均衡、可靠翻译
+        precisionRewrite:
+          name: 精翻重写
+          description: 翻译更地道，俚语化；略微增加 token 消耗
       importSuccess: 导入成功
       import: 导入
       export: 导出
@@ -861,6 +936,8 @@ options:
         cancel: 取消
     translationControl:
       title: 翻译控制
+      description: 哪些网页会自动翻译、哪些永不翻译、哪些内容会被跳过
+      manageControls: 管理控制规则
       autoTranslateWebsite:
         title: 基于网站自动翻译
         description: 打开后就开始翻译的网站
@@ -890,6 +967,8 @@ options:
         error: 数值必须在 $1 到 $2 之间
     translationQueue:
       title: 翻译队列
+      description: 请求发出的速度、每个请求承载的文本量，以及提前于阅读位置多远开始翻译
+      manageQueue: 管理队列
       requestQueueConfig:
         title: 翻译速率
         capacity:
@@ -990,13 +1069,18 @@ options:
         description: 让 AI 把字幕重新切成读起来完整的句子。时间轴也由 AI 判断，可能出现错位。需要配置 LLM 翻译服务。
     aiQuota:
       title: AI 字幕额度
-      description: 你账户本月的 AI 字幕转写额度使用情况
+      description: AI 利用语音转文字技术获取任何视频的准确字幕
+      launchBonusPromo: $1 之前购买会员额外赠送 300 分钟转录额度
       loginRequired: 登录后查看你的 AI 字幕额度
-      logIn: 登录
-      betaRequired: AI 字幕内测中，你的账号暂未获得使用资格
-      betaApply: 申请资格
+      upgradeRequired: AI 字幕需要 Pro 或 Ultra 订阅
+      pools:
+        subscription: 每月额度
+        launchBonus: 上线赠送
+      resetsOn: $1 重置
+      expiresOn: $1 过期
       loadError: 无法加载额度，请稍后重试。
-      summary: 已用 $1 分钟 / 共 $2 分钟，剩余 $3 分钟
+      remainingOf: 剩余 $1 / $2 分钟
+      used: 已用 $1 分钟
     style:
       title: 字幕样式
       description: 显示模式、位置、字体、颜色和背景，都对着预览调
@@ -1019,6 +1103,37 @@ options:
       fontWeight: 字体粗细
       backgroundOpacity: 背景透明度
       reset: 重置为默认
+      customCSS:
+        title: 自定义 CSS
+        description: 在上面的字体和颜色之上，为字幕行追加 CSS
+        presetTemplate: 预设模板
+        presetTemplateDescription: 快速应用预设模板，比如暂时遮住译文用于听力训练学习的模糊效果
+        presetPlaceholder: 选择模板
+        presets:
+          blurTranslation: 模糊译文
+          dashedTranslation: 虚线译文
+          dimOriginal: 弱化原文
+        editor:
+          placeholder: |
+            /* 示例：先把译文模糊，鼠标移上去再显示 */
+            .subtitles-translation {
+              filter: blur(6px);
+            }
+
+            .subtitles-translation:hover {
+              filter: none;
+            }
+
+            /* 可用的选择器：.read-frog-subtitles-box、.subtitles-main、.subtitles-translation */
+          docsLink: 如何配置?
+          saveButton: 保存
+          savedButton: 已保存
+          validation:
+            validating: 验证中...
+            valid: CSS 有效
+            syntaxError: CSS 存在语法错误
+            tooLong: CSS 过长
+            saved: 所有更改已保存
     customPrompts:
       title: 自定义字幕提示词
       description: 字幕翻译专用的提示词模板，与网页翻译提示词分开
@@ -1032,6 +1147,8 @@ options:
           videoSummary: 视频摘要（需启用 AI 智能上下文）
     subtitlesQueue:
       title: 字幕队列
+      description: 字幕请求发出的速度，以及每个请求承载的字幕行数
+      manageQueue: 管理队列
       requestQueueConfig:
         title: 翻译速率
         capacity:
@@ -1098,6 +1215,7 @@ languageDetection:
 translation:
   sameLanguage: 源语言和目标语言必须不同
   autoModeSameLanguage: 检测到的语言 '$1' 与目标语言相同
+  extensionContextInvalidated: 扩展已更新，请刷新此页面后重试。
 speak:
   fetchingAudio: 正在获取音频...
   playingAudio: 正在播放音频...
@@ -1138,6 +1256,7 @@ action:
   saveToNotebasePendingLoginDescription: 登录完成后，Read Frog 会自动创建笔记库并保存当前结果。
   saveToNotebasePendingConnectedLoginDescription: 登录完成后，Read Frog 会优先保存到已连接的笔记库；如果当前账号无法使用它，会创建新的笔记库并保存当前结果。
   upgrade: 升级
+  updatePayment: 更新支付方式
   openCustomActions: 打开 Custom AI Actions
   openNotebase: 打开笔记库
   contextDetailsTitleLabel: 标题
@@ -1145,9 +1264,9 @@ action:
   translation: 翻译
   speak: 朗读
   playing: 播放中
-saveSuggestion:
+noteSuggestion:
   title: 猜你想存
-  description: 把下列词存入笔记库，将来随时复习
+  description: 选择要存入笔记库的词，将来随时复习
   save: 保存
   saved: 已保存
   staleSuggestion: 该建议已过期
@@ -1161,8 +1280,12 @@ shortcutKeySelector:
   placeholder: 请输入快捷键
 subtitles:
   loadingAiSubtitles: 正在加载 AI 字幕中（预计 3 分钟）
-  requestAiSubtitles: 请求 AI 字幕（Beta）
+  aiSubtitlesHint: 通过先进 AI 识别语音生成准确字幕，无官方字幕时依然可用。
+  requestAiSubtitles: 请求 AI 字幕
   usingAiSubtitles: 正在使用 AI 字幕中
+  toggle:
+    enabled: 字幕翻译已开启
+    disabled: 字幕翻译已关闭
   actions:
     downloadTranslated: 下载翻译字幕
     downloadTranslatedPreparing: 正在准备字幕，长视频可能需要更久
@@ -1171,6 +1294,7 @@ subtitles:
     downloadSource: 下载原字幕
   state:
     loading: Read Frog 字幕加载中
+    translating: 翻译中…
     error: 发生错误
   errors:
     http429: 429 youtube 字幕接口请求次数过多，请稍后再试
@@ -1189,16 +1313,32 @@ subtitles:
     aiAuthFailed: API 认证失败，请检查您的 API 密钥
     aiServiceUnavailable: 翻译服务暂时不可用
     aiQuotaExceeded: 本月 AI 字幕额度已用完
+    aiQuotaExceededWithReset: 本月 AI 字幕额度已用完，$1 重置
+    aiLoginRequired: 登录后查看你的 AI 字幕额度
+    aiSubscriptionRequired: AI 字幕需要 Pro 或 Ultra 订阅
+    aiPaymentRequired: 请更新支付方式后继续生成 AI 字幕
+    aiVideoTooLong: 视频过长，暂不支持生成 AI 字幕
+    aiLiveReplayUnsupported: 暂不支持为直播回放生成 AI 字幕
+    aiStillProcessing: 转录仍在进行中，几分钟后再点一次即可继续获取
     aiRequestFailed: AI 字幕请求失败，请稍后重试
     aiNoResponse: AI 服务未响应，使用原文显示
     translatedExportFailed: 生成翻译字幕失败
     translatedExportIncomplete: 未能翻译所有字幕行
     translatedExportSameLanguage: 源语言和目标语言相同
 hostedAi:
+  ultraBadge:
+    tooltip: 需开通 Ultra 套餐 · 点击徽章获取套餐
+  availability:
+    authenticationRequired: 登录后可使用
+    ultraRequired: 需要 Ultra 套餐
+    quotaExhausted: 额度已用完
+    serviceUnavailable: 暂时不可用
+    usedPercent: "额度已使用 $1%"
+    resetsAt: "$1 重置"
   errors:
     rateLimited: 请求过于频繁，请稍后再试
-    guestRateLimited: 请求过于频繁，请登录以获取更多免费额度
-    userRateLimited: 请求过于频繁，超过免费额度限制，请稍后再试
+    guestRateLimited: 游客请求过于频繁，请稍后再试
+    userRateLimited: 请求过于频繁，请稍后再试
 hotkey:
   control: Ctrl
   alt: Option

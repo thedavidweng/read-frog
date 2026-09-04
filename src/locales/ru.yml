@@ -56,13 +56,16 @@ popup:
   aiSmartContextDescription: Использует контекст веб-страницы для улучшения качества перевода. Требуется LLM-провайдер перевода.
   more:
     title: Ещё
-    translationHub: Центр переводов
+    help: Помощь
+    tutorial: Руководство
+    emailUs: Написать нам
+    featureRequest: Предложить функцию
+    bugReport: Сообщить об ошибке
+    community: Сообщество
     joinDiscord: Присоединиться к Discord
     joinWechat: Присоединиться к группе WeChat
     starGithub: Поставить звезду на Github
     rateUs: Оценить нас
-    ebook: Сторонняя читалка электронных книг
-    tutorial: Руководство
 errorRecovery:
   title: Что-то пошло не так
   description: Активирован режим восстановления. Вы можете экспортировать текущие настройки как резервную копию, затем сбросить настройки и попробовать снова.
@@ -86,7 +89,9 @@ options:
   commandPalette:
     placeholder: Поиск настроек...
     noResults: Настройки не найдены
+    open: Поиск настроек
   sidebar:
+    toggle: Переключить боковую панель
     settings: Настройки
     features: Функции
     product: Продукт
@@ -94,44 +99,71 @@ options:
     translationHub: Центр переводов
   product:
     roadmap: Дорожная карта
-  contactUs:
-    title: Связаться с нами
-    pageDescription: Расскажите, что добавить дальше, сообщите об ошибке или просто напишите нам.
+  helpAndCommunity:
+    title: Помощь и сообщество
+    pageDescription: Узнайте, как пользоваться Read Frog, обратитесь за помощью к команде или присоединяйтесь к сообществу.
+    help:
+      title: Помощь
+    tutorial:
+      title: Руководство
+      description: Прочитайте документацию и узнайте, как пользоваться Read Frog
+    email:
+      title: Написать нам
+      description: Свяжитесь с командой напрямую по адресу contact@readfrog.app
     featureRequest:
       title: Предложить функцию
       description: Предложите идею и голосуйте за то, что команда сделает дальше
     bugReport:
       title: Сообщить об ошибке
       description: Создайте обращение в поддержку и следите за ним до решения
-    email:
-      title: Написать нам
-      description: Свяжитесь с командой напрямую по адресу contact@readfrog.app
+    community:
+      title: Сообщество
+    discord:
+      title: Discord
+      description: Общайтесь с командой и другими пользователями в реальном времени
     wechat:
-      title: WeChat
-      description: Отсканируйте QR-код, чтобы добавить разработчика в WeChat
+      title: Группа в WeChat
+      description: Отсканируйте QR-код, чтобы вступить в группу обсуждения в WeChat
       qrCodeAlt: QR-код WeChat
   apiProviders:
     title: API-провайдеры
     pageDescription: Подключите ИИ-сервисы, которые вызывает Read Frog, и выберите провайдера для каждой функции.
-    description: Добавьте провайдеров, которых может вызывать Read Frog. Более 20 встроено, и подойдёт любой OpenAI-совместимый API.
+    description: Добавьте провайдеров, которых может вызывать Read Frog. Более 20 встроено; также можно добавить пользовательские API, совместимые с Chat Completions, и API Open Responses.
     configTitle: Настройка провайдеров
     addProvider: Добавить провайдера
     builtInProvider: Встроенный провайдер
+    builtInAiUsage:
+      title: Квота встроенного ИИ
+      remaining: "Осталось $1%"
+      supportedFeatures: "Поддерживает функций: $1"
+      resetsAt: "Сброс: $1"
+      daily: Дневная квота
+      weekly: Недельная квота
+      features:
+        pageTranslation: Перевод страницы
+        customAction: Пользовательские AI-действия
+        noteSuggestion: Подсказки для заметок
+        selectionTranslation: Перевод выделения
+        videoSubtitles: Субтитры видео
+        inputTranslation: Перевод ввода
+        languageDetection: Определение языка
     sponsorCta: Получить быстрый и выгодный ИИ
+    sponsorCtaJalapenoCloud: Получить GLM 5.2 со скидкой 50 %
     setApiKeyWarning:
       message: Укажите API-ключ на странице $1
     badges:
       featureCount: $1 функций
       sponsor: Спонсор
+      sponsorJalapenoCloud: $$2 бесплатно
     dialog:
       title: Добавить нового провайдера
       groups:
         builtInProviders:
           title: Встроенные LLM-провайдеры
           description: Встроенные провайдеры больших языковых моделей, не требуют заполнения большинства настроек, таких как Base URL
-        openaiCompatibleProviders:
-          title: OpenAI-совместимые провайдеры
-          description: Если вы не нашли нужного ИИ-провайдера, выберите Custom Provider для настройки любого OpenAI-совместимого провайдера, например Zhipu AI
+        compatibleProviders:
+          title: Совместимые API-провайдеры
+          description: Для API, совместимых с Chat Completions, используйте Пользовательский Chat Complete, а для API Open Responses — Пользовательский Responses.
         pureTranslationProviders:
           title: Чистые провайдеры перевода
           description: Провайдеры, ориентированные на функции перевода без возможностей больших языковых моделей
@@ -141,6 +173,7 @@ options:
         description: Описание
         apiKey: API-ключ
         baseURL: Base URL
+        url: URL
         optional: Необязательно
       duplicate: Дублировать
       delete: Удалить
@@ -150,6 +183,7 @@ options:
         confirm: Удалить
         cancel: Отмена
       atLeastOneLLMProvider: Требуется как минимум один LLM-провайдер перевода.
+      featureWouldLoseProvider: "Невозможно удалить: у функции «$1» не останется ни одного работающего провайдера."
       duplicateProviderName: 'Дублирующееся имя провайдера "$1"'
       defaultProvider:
         translate: Установить как провайдер перевода по умолчанию
@@ -195,8 +229,12 @@ options:
     providers:
       name:
         builtInAi: Встроенный ИИ
+        builtInAiAdvance: Продвинутый встроенный ИИ
+        customChatComplete: Пользовательский Chat Complete
+        customResponses: Пользовательский Responses
       attribution:
-        builtInAi: Предоставлено Atlas Cloud. Сейчас доступно только для пользовательских AI-действий. Чтобы открыть неограниченный опыт, купите выгодные кредиты на официальном сайте.
+        builtInAi: Стандартная модель, размещённая Read Frog. Пользователи без Ultra могут использовать её только в пользовательских AI-действиях; пользователям Ultra доступно больше функций.
+        builtInAiAdvance: Продвинутая модель, размещённая Read Frog, — только для подписчиков Ultra. Работает во всех функциях встроенного ИИ — переводе страниц, пользовательских AI-действиях и других — с общей недельной квотой. Расходует квоту быстрее, чем стандартная модель.
       description:
         openai: Предоставляет модели, такие как GPT-4o
         azure: Модели OpenAI в Azure через ваши развертывания
@@ -207,9 +245,11 @@ options:
         anthropic: Модели Claude, известные своей безопасностью и превосходными рассуждениями
         xai: ИИ-компания Илона Маска, предлагающая модели Grok с доступом к данным в реальном времени
         atlascloud: Единая OpenAI-совместимая платформа для новых моделей DeepSeek, Kimi, Qwen, Doubao, GLM и других
+        jalapenocloud: ИИ корпоративного уровня, которым пользуются ведущие команды — теперь и для вас!
         siliconflow: Высокопроизводительная платформа вывода для китайских и международных моделей
         tensdaq: Революционная MaaS-платформа с рыночным ценообразованием, устраняющая высокие фиксированные цены
-        openaiCompatible: Сторонние и OpenAI API-совместимые
+        openaiCompatible: Подключение к пользовательской конечной точке, совместимой с OpenAI Chat Completions API
+        openResponses: Подключение к пользовательской конечной точке, совместимой с Open Responses API
         deeplx: Неофициальный DeepL API
         deepl: Официальный DeepL API
         bedrock: Управляемый AWS сервис для корпоративных базовых моделей
@@ -230,6 +270,7 @@ options:
         huggingface: API вывода Hugging Face с доступом к тысячам моделей с открытым кодом
     apiKey:
       showAPIKey: Показать API-ключ
+      getAPIKey: Получить API-ключ
     howToConfigure: Как настроить?
     testConnection:
       button: Проверить соединение
@@ -241,18 +282,20 @@ options:
       title: Провайдеры функций
       description: Выберите провайдера для каждой функции
       features:
-        translate: Перевод страницы
-        selectionToolbar_translate: Перевод выделения
+        pageTranslation: Перевод страницы
+        selectionTranslation: Перевод выделения
         inputTranslation: Перевод ввода
         videoSubtitles: Субтитры видео
+        noteSuggestion: Подсказки для заметок
       descriptions:
-        translate: Переводит страницу целиком — в двуязычном режиме или с заменой оригинала.
-        selectionToolbar_translate: Переводит выделенный текст через панель выделения.
+        pageTranslation: Переводит страницу целиком — в двуязычном режиме или с заменой оригинала.
+        selectionTranslation: Переводит выделенный текст через панель выделения.
         inputTranslation: Переводит то, что вы набрали в поле ввода, перед отправкой.
         videoSubtitles: Переводит субтитры, которые появляются в видеоплеере.
+        noteSuggestion: Предлагает слова, которые стоит сохранить в Notebase, после перевода выделенного текста.
     languageDetection:
       title: Определение языка
-      description: Влияет на точность определения языка для автоперевода, пропуска языков и выбора голоса озвучивания.
+      description: Влияет на точность определения языка для автоперевода и выбора голоса озвучивания.
       mode:
         basic: Базовый
         llm: LLM
@@ -287,8 +330,19 @@ options:
         title: Язык интерфейса
         description: Выберите язык интерфейса расширения независимо от языка браузера.
         auto: Авто (как в браузере)
+    translationLanguage:
+      title: Языки перевода
+      sourceCode:
+        title: Исходный язык
+        description: Язык оригинала страниц. При автоопределении язык берётся с самой страницы.
+        auto: Автоопределение
+      targetCode:
+        title: Язык перевода
+        description: Язык, на который переводятся страницы.
     extensionActivation:
       title: Активация расширения
+      description: Работать везде, кроме перечисленных сайтов, или только на перечисленных сайтах
+      manageSites: Управление сайтами
       mode:
         title: Режим активации
         description: Используйте режим чёрного списка для отключения расширения на определённых сайтах или режим белого списка для ограничения работы только указанными сайтами.
@@ -421,9 +475,15 @@ options:
     selectionTranslation:
       title: Перевод выделения
       description: Перевести выделенный текст.
+    subtitlesToggle:
+      title: Перевод субтитров
+      description: Включает или выключает переведённые субтитры видео.
     nodeTranslation:
       title: Перевод абзаца
       description: Наведите курсор на абзац или нажмите и удерживайте его, чтобы перевести только его.
+    translationHub:
+      title: Центр переводов
+      description: Открывает Центр переводов в новой вкладке.
   overlayTools:
     title: Инструменты наложения
   inputTranslation:
@@ -497,11 +557,13 @@ options:
       speak:
         title: Озвучивание
         description: Показывать кнопку озвучивания, которая читает выделенный текст вслух
-      saveSuggestion:
-        title: Предложения по сохранению
+      noteSuggestion:
+        title: Подсказки для заметок
         description: После перевода выделенного текста с помощью ИИ-провайдера предлагать слова для сохранения в Notebase
         action: Действие
         actionDescription: Действие, которое формирует предложение
+        provider: Провайдер
+        providerDescription: ИИ-провайдер, который формирует предложение
     display:
       title: Отображение
       opacity:
@@ -658,6 +720,7 @@ options:
           bilingual: Двуязычный
           translationOnly: Только перевод
         switched: "Режим перевода: $1"
+        microsoftNotSupported: Microsoft Translator не поддерживает режим «только перевод». Чтобы включить его, переключитесь на другого провайдера.
       translateRange:
         title: Охват перевода
         description: Выберите, переводить только основное содержимое или всё содержимое на странице.
@@ -669,6 +732,9 @@ options:
       enable:
         title: Включить
         description: Наведите курсор на абзац или нажмите и удерживайте его, чтобы перевести только его.
+      forceRetranslation:
+        title: Всегда переводить заново
+        description: Перевод при наведении пропускает кэш — он переводит заново, даже если текст уже есть в кэше, и заменяет сохранённый результат.
     translationStyle:
       title: Стиль отображения перевода
       description: Установите любой стиль для отличия результатов перевода от оригинального текста
@@ -710,13 +776,22 @@ options:
             tooLong: CSS слишком длинный
             saved: Все изменения сохранены
     personalizedPrompts:
-      title: Персонализированные промпты
+      title: Пользовательские промпты страниц
       description: Настройка различных типов промптов позволяет вам самостоятельно изменять тип промпта во время перевода. Промпт — это текст, который пользователь отправляет LLM.
       managePrompts: Управление промптами
       communityPrompts: Получайте или делитесь промптами с сообществом
       communityPromptsUrl: https://github.com/mengxi-ream/read-frog/discussions/821
       addPrompt: Добавить промпт
       default: По умолчанию
+      builtIn: Встроенный
+      copyAndCustomize: Скопировать и настроить
+      copyName: "Копия $1"
+      builtInPrompts:
+        default:
+          description: Сбалансированный и надёжный перевод повседневных материалов
+        precisionRewrite:
+          name: Перевод с редактурой
+          description: Более естественный и разговорный перевод; расход токенов немного выше
       importSuccess: Импорт успешен
       import: Импорт
       export: Экспорт
@@ -745,6 +820,8 @@ options:
         cancel: Отмена
     translationControl:
       title: Управление переводом
+      description: Что переводится само, что не переводится никогда и что пропускается
+      manageControls: Управление правилами
       autoTranslateWebsite:
         title: Автоперевод по веб-сайту
         description: Сайты, которые начинают переводиться сразу при открытии
@@ -774,6 +851,8 @@ options:
         error: Значение должно быть от $1 до $2
     translationQueue:
       title: Очередь перевода
+      description: Как быстро уходят запросы, сколько текста несёт каждый и насколько далеко впереди читателя они идут
+      manageQueue: Управление очередью
       requestQueueConfig:
         title: Скорость перевода
         capacity:
@@ -874,13 +953,18 @@ options:
         description: ИИ заново режет субтитры на строки, читающиеся как предложения. Тайминг он задаёт сам, поэтому строки могут расходиться с речью. Нужен LLM-провайдер перевода.
     aiQuota:
       title: Лимит ИИ-субтитров
-      description: Использование вашего месячного лимита транскрипции ИИ-субтитров
+      description: ИИ распознаёт речь и создаёт точные субтитры для любого видео
+      launchBonusPromo: Оформите подписку до $1 и получите дополнительно 300 минут расшифровки
       loginRequired: Войдите, чтобы посмотреть лимит ИИ-субтитров
-      logIn: Войти
-      betaRequired: ИИ-субтитры находятся в бете и пока недоступны для вашего аккаунта
-      betaApply: Подать заявку на доступ
+      upgradeRequired: Для ИИ-субтитров нужна подписка Pro или Ultra
+      pools:
+        subscription: Месячная квота
+        launchBonus: Подарок к запуску
+      resetsOn: Сброс $1
+      expiresOn: Истекает $1
       loadError: Не удалось загрузить лимит. Повторите попытку позже.
-      summary: Использовано $1 из $2 минут, осталось $3
+      remainingOf: Осталось $1 / $2 мин
+      used: Использовано $1 мин
     style:
       title: Стиль субтитров
       description: Режим отображения, положение, шрифты, цвета и фон — всё настраивается по живому предпросмотру
@@ -903,6 +987,37 @@ options:
       fontWeight: Толщина шрифта
       backgroundOpacity: Прозрачность фона
       reset: Сбросить по умолчанию
+      customCSS:
+        title: Пользовательский CSS
+        description: Дополнительный CSS для строк субтитров, поверх шрифтов и цветов выше
+        presetTemplate: Готовый шаблон
+        presetTemplateDescription: Быстро примените готовый шаблон — например, размытие перевода, чтобы скрыть его во время тренировки аудирования
+        presetPlaceholder: Выбрать шаблон
+        presets:
+          blurTranslation: Размыть перевод
+          dashedTranslation: Пунктир под переводом
+          dimOriginal: Приглушить оригинал
+        editor:
+          placeholder: |
+            /* Пример: размыть перевод и показывать его при наведении */
+            .subtitles-translation {
+              filter: blur(6px);
+            }
+
+            .subtitles-translation:hover {
+              filter: none;
+            }
+
+            /* Доступные селекторы: .read-frog-subtitles-box, .subtitles-main, .subtitles-translation */
+          docsLink: Как настроить?
+          saveButton: Сохранить
+          savedButton: Сохранено
+          validation:
+            validating: Проверка...
+            valid: CSS корректен
+            syntaxError: CSS содержит синтаксические ошибки
+            tooLong: CSS слишком длинный
+            saved: Все изменения сохранены
     customPrompts:
       title: Пользовательские промпты субтитров
       description: Шаблоны промптов только для перевода субтитров, отдельно от промптов перевода веб-страниц
@@ -916,6 +1031,8 @@ options:
           videoSummary: Краткое содержание видео (требуется умный контекст ИИ)
     subtitlesQueue:
       title: Очередь субтитров
+      description: Как быстро уходят запросы субтитров и сколько строк несёт каждый
+      manageQueue: Управление очередью
       requestQueueConfig:
         title: Скорость перевода
         capacity:
@@ -982,6 +1099,7 @@ languageDetection:
 translation:
   sameLanguage: Исходный и целевой языки должны различаться
   autoModeSameLanguage: Обнаруженный язык '$1' совпадает с целевым языком
+  extensionContextInvalidated: Расширение обновлено. Обновите эту страницу и повторите попытку.
 speak:
   fetchingAudio: Генерация аудио...
   playingAudio: Воспроизведение аудио...
@@ -1022,6 +1140,7 @@ action:
   saveToNotebasePendingLoginDescription: После входа Read Frog автоматически создаст Notebase и сохранит этот результат.
   saveToNotebasePendingConnectedLoginDescription: После входа Read Frog сохранит в подключённую Notebase, если это возможно. Если аккаунт не может её использовать, будет создана новая Notebase.
   upgrade: Повысить тариф
+  updatePayment: Обновить оплату
   openCustomActions: Открыть Custom AI Actions
   openNotebase: Открыть Notebase
   contextDetailsTitleLabel: Заголовок
@@ -1029,13 +1148,13 @@ action:
   translation: Перевод
   speak: Озвучить
   playing: Воспроизведение
-saveSuggestion:
+noteSuggestion:
   title: Стоит сохранить
-  description: Сохраните эти слова в Notebase, чтобы повторять их в любое время.
+  description: Выберите слова для сохранения в Notebase и повторяйте их в любое время.
   save: Сохранить
   saved: Сохранено
   staleSuggestion: Это предложение устарело
-  toggleLabel: Показывать предложения по сохранению
+  toggleLabel: Показывать подсказки для заметок
 thinking:
   label: Размышление
   complete: Размышление завершено
@@ -1045,8 +1164,12 @@ shortcutKeySelector:
   placeholder: Пожалуйста, введите горячую клавишу
 subtitles:
   loadingAiSubtitles: Загрузка ИИ-субтитров… (ожидается 3 мин)
-  requestAiSubtitles: Запросить ИИ-субтитры (Beta)
+  aiSubtitlesHint: Точные субтитры создаются с помощью передового ИИ-распознавания речи и доступны даже без официальных субтитров.
+  requestAiSubtitles: Запросить ИИ-субтитры
   usingAiSubtitles: Используются ИИ-субтитры
+  toggle:
+    enabled: Перевод субтитров включён
+    disabled: Перевод субтитров выключен
   actions:
     downloadTranslated: Скачать переведённые субтитры
     downloadTranslatedPreparing: Подготовка субтитров, длинные видео могут занять больше времени
@@ -1055,6 +1178,7 @@ subtitles:
     downloadSource: Скачать исходные субтитры
   state:
     loading: Read Frog загрузка субтитров
+    translating: Перевод…
     error: Произошла ошибка
   errors:
     http429: 429 Слишком много запросов к API YouTube субтитров, пожалуйста, попробуйте снова позже
@@ -1073,16 +1197,32 @@ subtitles:
     aiAuthFailed: Ошибка аутентификации API, проверьте ваш API ключ
     aiServiceUnavailable: Служба перевода временно недоступна
     aiQuotaExceeded: Месячный лимит ИИ-субтитров исчерпан
+    aiQuotaExceededWithReset: Месячный лимит ИИ-субтитров исчерпан · сброс $1
+    aiLoginRequired: Войдите, чтобы посмотреть лимит ИИ-субтитров
+    aiSubscriptionRequired: Для ИИ-субтитров нужна подписка Pro или Ultra
+    aiPaymentRequired: Обновите способ оплаты, чтобы продолжить создание ИИ-субтитров
+    aiVideoTooLong: Это видео слишком длинное для ИИ-субтитров
+    aiLiveReplayUnsupported: ИИ-субтитры пока недоступны для записей прямых трансляций
+    aiStillProcessing: Транскрипция ещё идёт — нажмите ещё раз через несколько минут
     aiRequestFailed: Не удалось запросить ИИ-субтитры, повторите попытку позже
     aiNoResponse: Служба AI не ответила, отображается оригинальный текст
     translatedExportFailed: Не удалось создать переведённые субтитры
     translatedExportIncomplete: Не удалось перевести все строки субтитров
     translatedExportSameLanguage: Исходный и целевой языки совпадают
 hostedAi:
+  ultraBadge:
+    tooltip: Требуется план Ultra · Нажмите на значок, чтобы получить его
+  availability:
+    authenticationRequired: Войдите, чтобы использовать этого провайдера
+    ultraRequired: Требуется план Ultra
+    quotaExhausted: Квота исчерпана
+    serviceUnavailable: Временно недоступно
+    usedPercent: "Использовано квоты: $1%"
+    resetsAt: "Сброс в $1"
   errors:
     rateLimited: Слишком много запросов, пожалуйста, повторите позже.
-    guestRateLimited: Лимит гостя достигнут. Войдите, чтобы получить больше бесплатных AI-запросов.
-    userRateLimited: Слишком много запросов. Вы превысили бесплатный лимит, пожалуйста, повторите позже.
+    guestRateLimited: Слишком много гостевых запросов. Повторите позже.
+    userRateLimited: Слишком много запросов. Повторите позже.
 hotkey:
   control: Ctrl
   alt: Option

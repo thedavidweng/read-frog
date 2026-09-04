@@ -34,13 +34,17 @@ function WebsitePatternsPage({
       title={i18n.t("options.translation.title")}
       description={i18n.t("options.translation.pageDescription")}
     >
-      <ConfigDetailSection backTo="/page-translation" title={<span id={anchorId}>{title}</span>}>
+      <ConfigDetailSection
+        backTo="/page-translation/translation-control"
+        title={<span id={anchorId}>{title}</span>}
+      >
         <PatternsTable
           patterns={patterns}
           onAddPattern={addPattern}
           onRemovePattern={removePattern}
           placeholderText={placeholderText}
           tableHeaderText={tableHeaderText}
+          rowsClassName="max-h-none"
         />
       </ConfigDetailSection>
     </PageLayout>
@@ -48,7 +52,7 @@ function WebsitePatternsPage({
 }
 
 export function AutoTranslateWebsitesPage() {
-  const [translateConfig, setTranslateConfig] = useAtom(configFieldsAtomMap.translate)
+  const [translateConfig, setTranslateConfig] = useAtom(configFieldsAtomMap.pageTranslation)
 
   return (
     <WebsitePatternsPage
@@ -69,7 +73,7 @@ export function AutoTranslateWebsitesPage() {
 }
 
 export function NeverAutoTranslateWebsitesPage() {
-  const [translateConfig, setTranslateConfig] = useAtom(configFieldsAtomMap.translate)
+  const [translateConfig, setTranslateConfig] = useAtom(configFieldsAtomMap.pageTranslation)
 
   return (
     <WebsitePatternsPage
